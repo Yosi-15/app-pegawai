@@ -2,36 +2,92 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'App Pegawai')</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Pastikan URL CSS benar -->
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        header { background: #333; color: white; padding: 1rem; }
-        nav ul { list-style: none; padding: 0; display: flex; gap: 1rem; }
-        nav a { color: white; text-decoration: none; }
-        main { padding: 2rem; }
-        footer { background: #333; color: white; text-align: center; padding: 1rem; margin-top: 2rem; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        body {
+            padding-top: 20px;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            margin-bottom: 30px;
+        }
+        .table th {
+            background-color: #343a40;
+            color: white;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>@yield('page-title', 'App Pegawai')</h1>
-        <nav>
-            <ul>
-                <li><a href="{{ url('/employees') }}">Employee</a></li>
-                <li><a href="{{ url('/departments') }}">Department</a></li>
-                <li><a href="{{ url('/attendance') }}">Attendance</a></li>
-                <li><a href="{{ url('/report') }}">Report</a></li>
-                <li><a href="{{ url('/settings') }}">Settings</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <i class="fas fa-users"></i> App Pegawai
+            </a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('employees.index') }}">
+                            <i class="fas fa-user-tie"></i> Employee
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('departments.index') }}">
+                            <i class="fas fa-building"></i> Department
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('positions.index') }}">
+                            <i class="fas fa-briefcase"></i> Position
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('attendances.index') }}">
+                            <i class="fas fa-calendar-check"></i> Attendance
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('salaries.index') }}">
+                            <i class="fas fa-money-bill-wave"></i> Salary
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
         @yield('content')
-    </main>
-    <footer>
-        <p>&copy; {{ date('Y') }} App Pegawai</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-5 py-3 bg-dark text-white text-center">
+        <div class="container">
+            <p>&copy; {{ date('Y') }} App Pegawai</p>
+        </div>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Auto-hide alerts
+        setTimeout(() => {
+            document.querySelectorAll('.alert').forEach(alert => {
+                alert.remove();
+            });
+        }, 3000);
+    </script>
 </body>
 </html>
